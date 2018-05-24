@@ -1,0 +1,37 @@
+<collection>
+<match>
+   <Pattern>who (is) (.*)?</Pattern>
+   <Cypher>MATCH (a:PERSON)-[r]-(b) where a.Name contains "(.*)" RETURN r,a,b</Cypher>
+</match>
+<match>
+   <Pattern>what (is|are) (.*)?</Pattern>
+   <Cypher>MATCH (a)-[r]-(b) where a.Name contains "(.*)" RETURN a</Cypher>
+</match>
+<match>
+   <Pattern>(what do you know|tell me) about (.*)?</Pattern>
+   <Cypher>MATCH (a)-[r]-(b) where a.Name contains "(.*)" RETURN r,a,b</Cypher>
+</match>
+<match>
+   <Pattern>who (like|likes) (.*)?</Pattern>
+   <Cypher>MATCH (a:PERSON)-[r:like]-(b) where b.Name contains "(.*)" RETURN a</Cypher>
+</match>
+<match>
+   <Pattern>who (sell|sold) (.*)?</Pattern>
+   <Cypher>MATCH (a:PERSON)-[r:sell]-(b) where b.Name contains "(.*)" RETURN a</Cypher>
+</match>
+<match>
+   <Pattern>who (buy|bought) (.*)?</Pattern>
+   <Cypher>MATCH (a:PERSON)-[r:buy]-(b) where b.Name contains "(.*)" RETURN a</Cypher>
+</match>
+<match>
+   <Pattern>Somebody whose last name starts with (.*)?</Pattern>
+   <Cypher>MATCH (a) where a.Name=~'(?i).*(.*)' RETURN a</Cypher>
+</match>
+<match>
+   <Pattern>Somebody whose first name starts with (.*)?</Pattern>
+   <Cypher>MATCH (a) where a.Name=~'(?i)(.*).*' RETURN a</Cypher>
+</match>
+<match>
+   <Pattern>A woman who (like|likes) (.*)?</Pattern>
+   <Cypher>MATCH (a)-[r:like]->(b:(.*)) where a.gender=~"(?i)female" RETURN a</Cypher>
+</match></collection>
